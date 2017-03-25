@@ -4,16 +4,16 @@ Given a string **s**, find the longest palindromic substring in **s**. You may a
 
 **Example:**
 ```
-**Input: **"babad"
+**Input**: "babad"
 
-**Output: **"bab"
+**Output**: "bab"
 
-**Note: **"aba" is also a valid answer.
+**Note**: "aba" is also a valid answer.
 ```
 
 **Example:**
 ```
-**Input: **"cbbd"
+**Input**: "cbbd"
 
-**Output: **"bb"
+**Output**: "bb"
 ```
