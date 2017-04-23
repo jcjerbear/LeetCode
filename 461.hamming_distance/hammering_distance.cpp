@@ -6,6 +6,7 @@ using namespace std;
 class Solution {
 public:
     int hammingDistance(int x, int y) {
+        /*
         vector<int> indexVector;
         // testbit for shifting purposes
         bitset<32> testBit (1);
@@ -32,6 +33,8 @@ public:
         }
         // after the for loop we have 2 indexes recorded so then we now calculate their difference
         return indexVector[1]-indexVector[0];
+        */
+        return bitset<32>(x^y).count();
     }
 };
 
@@ -40,8 +43,6 @@ int main(int argc, char* argv[])
     Solution result;
     int x = 1073741824;
     int y = 1;
-    int outcome;
-    outcome = result.hammingDistance(x, y);
-	cout<<outcome<<endl;
+	cout<<result.hammingDistance(x, y)<<endl;
     return 0;
 }
