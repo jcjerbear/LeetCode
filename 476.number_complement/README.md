@@ -10,13 +10,13 @@ Given a positive integer, ouptput its complement number. The complement strategy
 
 **Example 1:**
 ```
-**Input:** 5
+**Input**: 5
 
-**Output:** 2
+**Output**: 2
 ```
 **Example 2:**
 ```
-**Input:** 1
+**Input**: 1
 
 **Output:** 0
 ```
