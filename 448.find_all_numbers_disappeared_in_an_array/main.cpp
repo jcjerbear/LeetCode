@@ -1,0 +1,40 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+class Solution {
+public:
+    vector<int> findDisappearedNumbers(vector<int> &nums) {
+        vector<int> missingVector;
+        vector<int> existedVector;
+
+        sort(nums.begin(), nums.end());
+        for (int i = 0; i < nums.size(); i++) {
+            existedVector.push_back((int &&) nums.at(i));
+            // check if the current iterated element already exists in the missing vector, if so, then remove it
+            if (missingVector.size()) {
+                missingVector.erase(std::remove(missingVector.begin(), missingVector.end(), nums.at(i)),
+                                    missingVector.end());
+            }
+            // check if the current iterated element equals to the index# and
+            if (nums.at(i) != i + 1 && !binary_search(existedVector.begin(), existedVector.end(), i + 1)) {
+                missingVector.push_back(i + 1);
+            }
+        }
+        return missingVector;
+    }
+};
+
+int main() {
+    Solution result;
+    vector<int> resultVector;
+//    vector<int> inputVector = {4, 3, 2, 7, 8, 2, 3, 1};
+    vector<int> inputVector = {10,2,5,10,9,1,1,4,3,7};
+
+    resultVector = result.findDisappearedNumbers(inputVector);
+    for (auto i:resultVector) {
+        cout << i << endl;
+    }
+    return 0;
+}
