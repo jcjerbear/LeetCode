@@ -6,35 +6,52 @@ class ListNode(object):
 
 
 class Solution(object):
+    # iteration approach, submission 2 - runtime 44 ms
+    # def mergeTwoLists(self, l1, l2):
+    #     """
+    #     :type l1: ListNode
+    #     :type l2: ListNode
+    #     :rtype: ListNode
+    #     """
+    #     dummyNode = ListNode(0)
+    #     iterator = dummyNode
+    #
+    #     if not l1 and not l2:
+    #         return None
+    #     elif l1 and not l2:
+    #         return l1
+    #     elif not l1 and l2:
+    #         return l2
+    #     else:
+    #         while l1 and l2:
+    #             if l1.val < l2.val:
+    #                 iterator.next = l1
+    #                 l1 = l1.next
+    #             else:
+    #                 iterator.next = l2
+    #                 l2 = l2.next
+    #             iterator = iterator.next
+    #         if l1:
+    #             iterator.next = l1
+    #         else:
+    #             iterator.next = l2
+    #         return dummyNode.next
+
+    # recursive approach, submission 3 - runtime 28 ms
     def mergeTwoLists(self, l1, l2):
         """
         :type l1: ListNode
         :type l2: ListNode
         :rtype: ListNode
         """
-        dummyNode = ListNode(0)
-        iterator = dummyNode
-
-        if not l1 and not l2:
-            return None
-        elif l1 and not l2:
+        if not l1 or not l2:
+            return l1 or l2
+        if l1.val < l2.val:
+            l1.next = self.mergeTwoLists(l1.next, l2)
             return l1
-        elif not l1 and l2:
-            return l2
         else:
-            while l1 and l2:
-                if l1.val < l2.val:
-                    iterator.next = l1
-                    l1 = l1.next
-                else:
-                    iterator.next = l2
-                    l2 = l2.next
-                iterator = iterator.next
-            if l1:
-                iterator.next = l1
-            else:
-                iterator.next = l2
-            return dummyNode.next
+            l2.next = self.mergeTwoLists(l1, l2.next)
+            return l2
 
     def printList(self, l1):
         """
