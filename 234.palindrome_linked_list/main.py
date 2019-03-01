@@ -10,6 +10,7 @@ class ListNode:
         head.next = ListNode(x)
 
     def print(self, head) -> None:
+        print("hi")
         while head is not None:
             if head.next is not None:
                 print(str(head.val)+"->")
@@ -20,8 +21,28 @@ class ListNode:
 
 class Solution:
     def isPalindrome(self, head: ListNode) -> bool:
-        # # method 3
-        # # 
+        # method 3
+        # directly manipulate the input argument linked list to achieve space complexity O(1)
+        fast = slow = head
+        # find the middle node by fast ptr jumping 2 nodes at a time and slow ptr jumping 1 node at a time
+        while fast and fast.next:
+            fast = fast.next.next
+            slow = slow.next
+        # reverse the second half of the linked list from the middle ptr
+        prev = None
+        while slow:
+            next_node = slow.next
+            slow.next = prev
+            prev = slow
+            slow = next_node
+        # compare the first half and the second half of the linked list
+        # to see if they have the same pattern
+        while prev and head:
+            if prev.val != head.val:
+                return False
+            prev = prev.next
+            head = head.next
+        return True
 
         # # method 2
         # # manipulate with the nature of a stack instead doing list manipulation to detect palindrone
@@ -51,10 +72,10 @@ class Solution:
 
 
 if __name__ == '__main__':
-    linked_list = ListNode(-129)
-    linked_list.tailInsert(linked_list, -129)
-    # linked_list.tailInsert(linked_list, 2)
-    # linked_list.tailInsert(linked_list, 1)
+    linked_list = ListNode(1)
+    linked_list.tailInsert(linked_list, 2)
+    linked_list.tailInsert(linked_list, 2)
+    linked_list.tailInsert(linked_list, 1)
     linked_list.print(linked_list)
     palindrone = Solution()
     print(palindrone.isPalindrome(linked_list))
